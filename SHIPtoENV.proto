@@ -1,0 +1,12 @@
+syntax = "proto3";
+package shipenvproto;
+
+message JoinRequest {
+	string gameVersion = 1;
+	string SHIPID = 2;
+	string GameID = 3;
+}
+
+message SHIPtoENV {
+	JoinRequest joinRequest = 1;
+}
