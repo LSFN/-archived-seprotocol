@@ -8,5 +8,5 @@ message LobbyJoinRequest {
 }
 
 message SHIPtoENV {
-	LobbyJoinRequest joinRequest = 1;
+	LobbyJoinRequest lobbyJoinRequest = 1;
 }

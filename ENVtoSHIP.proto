@@ -11,9 +11,25 @@ message LobbyJoinResponse {
 	string gameVersion = 1; // The version of this ENV.
 	JoinErrorCode errorCode = 2; // Code of the error explaining why the SHIP couldn't join.
 	string SHIPID = 3; // The ID of this SHIP; generated and issued by the ENV if the join is successful.
-	string GameID = 4; // The ID of the current game; generated and issued by the ENV if the join is successful.
+	string GameID = 4; // The ID of the current game; issued by the ENV if the join is successful.
+}
+
+message LobbyMembership {
+	enum InfoType {
+		COMPLETE_LIST = 0;
+		JOIN = 1;
+		LEAVE = 2;
+	}
+	
+	message LobbyMemberInfo {
+		string shipName = 1;
+	}
+	
+	InfoType infoType = 1;
+	repeated LobbyMemberInfo lobbyMembers = 2;
 }
 
 message ENVtoSHIP {
-	LobbyJoinResponse joinResponse = 1;
+	LobbyJoinResponse lobbyJoinResponse = 1;
+	LobbyMembership lobbyMembership = 2;
 }
