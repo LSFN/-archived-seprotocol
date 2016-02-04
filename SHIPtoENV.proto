@@ -1,12 +1,12 @@
 syntax = "proto3";
 package shipenvproto;
 
-message JoinRequest {
-	string gameVersion = 1;
-	string SHIPID = 2;
-	string GameID = 3;
+message LobbyJoinRequest {
+	string gameVersion = 1; // The version of this SHIP
+	string SHIPID = 2; // If reconnecting, the ID of this SHIP previously issued by the ENV.
+	string GameID = 3; // If reconnecting, the ID of the game that the SHIP is expecting to rejoin.
 }
 
 message SHIPtoENV {
-	JoinRequest joinRequest = 1;
+	LobbyJoinRequest joinRequest = 1;
 }

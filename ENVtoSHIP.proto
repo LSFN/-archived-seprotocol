@@ -1,14 +1,19 @@
 syntax = "proto3";
 package shipenvproto;
 
-message JoinResponse {
+message LobbyJoinResponse {
+	enum JoinErrorCode {
+		SUCCESS = 0;
+		VERSION_MISMATCH = 1;
+		GAME_IN_PROGRESS = 2;
+	}
+	
 	string gameVersion = 1; // The version of this ENV.
-	bool joinGranted = 2; // True if the SHIP is allowed to connect with the ENV.
-	uint32 errorCode = 3; // Code of the error explaining why the SHIP couldn't join.
-	string SHIPID = 4; // If reconnecting, the ID of this SHIP previously issued by the ENV.
-	string GameID = 5; // If reconnecting, the ID of the game that the SHIP is expecting to rejoin.
+	JoinErrorCode errorCode = 2; // Code of the error explaining why the SHIP couldn't join.
+	string SHIPID = 3; // The ID of this SHIP; generated and issued by the ENV if the join is successful.
+	string GameID = 4; // The ID of the current game; generated and issued by the ENV if the join is successful.
 }
 
 message ENVtoSHIP {
-	JoinResponse joinResponse = 1;
+	LobbyJoinResponse joinResponse = 1;
 }
