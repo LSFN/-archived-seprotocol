@@ -6,6 +6,7 @@ message LobbyJoinResponse {
 		SUCCESS = 0;
 		VERSION_MISMATCH = 1;
 		GAME_IN_PROGRESS = 2;
+		NAME_COLLISION = 3;
 	}
 	
 	string gameVersion = 1; // The version of this ENV.

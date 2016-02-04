@@ -5,6 +5,7 @@ message LobbyJoinRequest {
 	string gameVersion = 1; // The version of this SHIP
 	string SHIPID = 2; // If reconnecting, the ID of this SHIP previously issued by the ENV.
 	string GameID = 3; // If reconnecting, the ID of the game that the SHIP is expecting to rejoin.
+	string name = 4; // The name of the ship represented by this SHIP.
 }
 
 message SHIPtoENV {
