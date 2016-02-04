@@ -2,7 +2,7 @@ syntax = "proto3";
 package shipenvproto;
 
 message LobbyJoinResponse {
-	enum JoinErrorCode {
+	enum JoinStatusCode {
 		SUCCESS = 0;
 		VERSION_MISMATCH = 1;
 		GAME_IN_PROGRESS = 2;
@@ -10,7 +10,7 @@ message LobbyJoinResponse {
 	}
 	
 	string gameVersion = 1; // The version of this ENV.
-	JoinErrorCode errorCode = 2; // Code of the error explaining why the SHIP couldn't join.
+	JoinStatusCode joinStatusCode = 2; // Code of the error explaining why the SHIP couldn't join.
 	string SHIPID = 3; // The ID of this SHIP; generated and issued by the ENV if the join is successful.
 	string GameID = 4; // The ID of the current game; issued by the ENV if the join is successful.
 }
