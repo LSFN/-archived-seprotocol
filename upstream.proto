@@ -1,0 +1,14 @@
+syntax = "proto3";
+package se_protocol;
+option go_package = "se-protocol";
+
+message LobbyJoinRequest {
+	string gameVersion = 1; // The version of this ship server.
+	string shipID = 2; // If reconnecting, the ID of this ship server previously issued by the environment server.
+	string gameID = 3; // If reconnecting, the ID of the game that the ship server is expecting to rejoin.
+	string name = 4; // The name of the ship represented by this ship server.
+}
+
+message upstream {
+	LobbyJoinRequest lobbyJoinRequest = 1;
+}
