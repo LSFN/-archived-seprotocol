@@ -1,6 +1,5 @@
 syntax = "proto3";
-package se_protocol;
-option go_package = "se-protocol";
+package seprotocol;
 
 message LobbyJoinRequest {
 	string gameVersion = 1; // The version of this ship server.

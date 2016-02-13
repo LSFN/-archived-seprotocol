@@ -1,6 +1,5 @@
 syntax = "proto3";
-package se_protocol;
-option go_package = "se-protocol";
+package seprotocol;
 
 message LobbyJoinResponse {
 	enum JoinStatusCode {
