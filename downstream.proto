@@ -1,18 +1,18 @@
 syntax = "proto3";
 package seprotocol;
 
-message LobbyJoinResponse {
-	enum JoinStatusCode {
-		SUCCESS = 0;
-		VERSION_MISMATCH = 1;
-		GAME_IN_PROGRESS = 2;
-		NAME_COLLISION = 3;
+message JoinResponse {
+	enum GamePhase {
+		LOBBY = 0;
+		SETUP = 1;
+		PLAY = 2;
+		CLEANUP = 3;
 	}
 	
 	string gameVersion = 1; // The version of this environment server.
-	JoinStatusCode joinStatusCode = 2; // Code of the error explaining why the ship server couldn't join.
-	string shipID = 3; // The ID of this ship server; generated and issued by the environemnt server if the join is successful.
-	string gameID = 4; // The ID of the current game; issued by the environment server if the join is successful.
+	bool joinSuccess = 2; // Whether or not the join was successful.
+	GamePhase gamePhase = 3; // The game phase that the environment server is currently in.
+	string shipServerID = 4; // The ID of this ship server; generated and issued by the environment server if the join is successful.
 }
 
 message LobbyMembership {
@@ -20,10 +20,12 @@ message LobbyMembership {
 		COMPLETE_LIST = 0;
 		JOIN = 1;
 		LEAVE = 2;
+		NAME_CHANGE = 3;
 	}
 	
 	message LobbyMemberInfo {
-		string shipName = 1;
+		string shipServerID = 1;
+		string shipName = 2;
 	}
 	
 	InfoType infoType = 1;
@@ -31,6 +33,7 @@ message LobbyMembership {
 }
 
 message downstream {
-	LobbyJoinResponse lobbyJoinResponse = 1;
-	LobbyMembership lobbyMembership = 2;
+	string protocolVersion = 1;
+	JoinResponse joinResponse = 2;
+	LobbyMembership lobbyMembership = 3;
 }
