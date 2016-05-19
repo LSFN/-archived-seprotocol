@@ -1,0 +1,39 @@
+syntax = "proto3";
+package seprotocol;
+
+message JoinResponse {
+	enum GamePhase {
+		LOBBY = 0;
+		SETUP = 1;
+		PLAY = 2;
+		CLEANUP = 3;
+	}
+	
+	string gameVersion = 1; // The version of this environment server.
+	bool joinSuccess = 2; // Whether or not the join was successful.
+	GamePhase gamePhase = 3; // The game phase that the environment server is currently in.
+	string shipServerID = 4; // The ID of this ship server; generated and issued by the environment server if the join is successful.
+}
+
+message LobbyMembership {
+	enum InfoType {
+		COMPLETE_LIST = 0;
+		JOIN = 1;
+		LEAVE = 2;
+		NAME_CHANGE = 3;
+	}
+	
+	message LobbyMemberInfo {
+		string shipServerID = 1;
+		string shipName = 2;
+	}
+	
+	InfoType infoType = 1;
+	repeated LobbyMemberInfo lobbyMembers = 2;
+}
+
+message downstream {
+	string protocolVersion = 1;
+	JoinResponse joinResponse = 2;
+	LobbyMembership lobbyMembership = 3;
+}

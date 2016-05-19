@@ -1,0 +1,14 @@
+syntax = "proto3";
+package seprotocol;
+
+message JoinRequest {
+	string gameVersion = 1; // The version of this ship server.
+	string shipServerID = 2; // If reconnecting, the ID of this ship server previously issued by the environment server.
+}
+
+
+message upstream {
+	string protocolVersion = 1;
+	JoinRequest joinRequest = 2;
+	string setShipName = 3;
+}
